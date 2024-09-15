@@ -7,7 +7,7 @@ import traceback
 def generate_sheet_names(month_number):
     year = 2024  # You can use any specific year or the current year using datetime
     days_in_month = calendar.monthrange(year, month_number)[1]
-    # Use '_' instead of '/' to ensure valid sheet names
+   
     sheet_names = [f'{month_number}-{str(day).zfill(2)}' for day in range(1, days_in_month + 1)]
     return sheet_names
 
@@ -17,7 +17,7 @@ def link_sheets(wb, sheet_names):
         current_sheet = wb[sheet_names[i]]
         previous_sheet = wb[sheet_names[i - 1]]
 
-        # Example of copying data from C3:C4 into B3:B4 in the next sheet
+       
         current_sheet['B3'] = f"='{previous_sheet.title}'!C3"
         current_sheet['B4'] = f"='{previous_sheet.title}'!C4"
 
@@ -86,7 +86,7 @@ try:
                 for cell in row:
                     cell.border = thin_border
 
-        # Create sheets and add data with formulas and formatting
+       
         for sheet_name in sheet_names:
             ws = wb.create_sheet(title=sheet_name)
 
@@ -340,7 +340,7 @@ try:
                 for row in range(start_row, end_row + 1):
                     ws[f'D{row}'] = f'=IF(C{row}<B{row},(149-B{row}+1)+C{row},C{row}-B{row})*2'
                     
-            # Example usage:
+            
             apply_if_formula(ws, 9, 24)
 
             def apply_custom_formula(ws, start_row, end_row):
@@ -348,7 +348,7 @@ try:
                 for row in range(start_row, end_row + 1):
                     ws[f'D{row}'] = f'=IF(C{row}<B{row},(99-B{row}+1)+C{row},C{row}-B{row})*$A$28'
 
-            # Example usage:
+           
             apply_custom_formula(ws, 29, 37)
 
             def apply_another_formula(ws, start_row, end_row):
@@ -356,14 +356,14 @@ try:
                 for row in range(start_row, end_row + 1):
                     ws[f'D{row}'] = f'=IF(C{row}<B{row},(59-B{row}+1)+C{row},C{row}-B{row})*$A$41'
 
-            # Example usage:
+           
             apply_another_formula(ws, 42, 56)
 
             def apply_formula_for_I_column(ws, start_row, end_row):
                 for row in range(start_row, end_row + 1):
                     ws[f'I{row}'] = f'=IF(H{row}<G{row},(29-G{row}+1)+H{row},H{row}-G{row})*$F$2'
 
-            # Example usage:
+            
             apply_formula_for_I_column(ws, 3, 20)
 
 
@@ -372,7 +372,7 @@ try:
                 for row in range(start_row, end_row + 1):
                     ws[f'I{row}'] = f'=IF(H{row}<G{row},(14-G{row}+1)+H{row},H{row}-G{row})*$F$24'
 
-            # Example usage:
+            
             apply_formula_I25_to_I30(ws, 25, 30)
 
             def apply_formula_I35_to_I37(ws, start_row, end_row):
@@ -380,7 +380,7 @@ try:
                 for row in range(start_row, end_row + 1):
                     ws[f'I{row}'] = f'=IF(H{row}<G{row},(11-G{row}+1)+H{row},H{row}-G{row})*$F$34'
 
-            # Example usage:
+            
             apply_formula_I35_to_I37(ws, 35, 37)
 
             def apply_formula_I42_to_I46(ws, start_row, end_row):
@@ -388,7 +388,7 @@ try:
                 for row in range(start_row, end_row + 1):
                     ws[f'I{row}'] = f'=IF(H{row}<G{row},(9-G{row}+1)+H{row},H{row}-G{row})*$F$41'
                     
-            # Example usage:
+            
             apply_formula_I42_to_I46(ws, 42, 46)
 
 
@@ -478,15 +478,12 @@ try:
             apply_border(ws, 'K24:M24')
             apply_border(ws, 'K26:M26')
             
-            
-
 
             ws.column_dimensions['K'].width = 23
 
             for row in ws.iter_rows():
                 for cell in row:
                     cell.alignment = Alignment(horizontal='center', vertical='center')
-
 
     # Remove the default sheet created                                                                                                                                                                    
         if 'Sheet' in wb.sheetnames:                                                                                                                                                                            
